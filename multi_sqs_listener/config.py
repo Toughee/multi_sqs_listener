@@ -24,6 +24,7 @@ class QueueConfig(object):
         self.queue_type = kwargs['queue_type'] if 'queue_type' in kwargs else 'long-poll'
         self.region_name = kwargs['region_name'] if 'region_name' in kwargs else 'eu-west-1'
         self.queue_acct_id = kwargs.get('queue_acct_id')
+        self.endpoint_url = kwargs.get('endpoint_url')
 
         # Only for short polling queues
         self.poll_interval = kwargs['poll_interval'] if 'poll_interval' in kwargs else 60

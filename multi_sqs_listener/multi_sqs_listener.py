@@ -48,7 +48,8 @@ class MultiSQSListener(object):
                     run_event,
                     handler_available_event,
                     region_name=queue.region_name,
-                    queue_acct_id=queue.queue_acct_id
+                    queue_acct_id=queue.queue_acct_id,
+                    endpoint_url=queue.endpoint_url
                 )
             else:
                 listener_thread = _ShortPollSQSListener(
@@ -59,7 +60,8 @@ class MultiSQSListener(object):
                     handler_available_event,
                     queue.poll_interval,
                     region_name=queue.region_name,
-                    queue_acct_id=queue.queue_acct_id
+                    queue_acct_id=queue.queue_acct_id,
+                    endpoint_url=queue.endpoint_url
                 )
             listener_thread.start()
             threads.append(listener_thread)

@@ -76,6 +76,7 @@ class MultiSQSListener(object):
                         message = bus.get().get(block=False)
                         handler_available_event.clear()
                         try:
+                            logger.info("Message received - {}".format(message[0])) 
                             self.handle_message(message[0], bus.name, bus.priority, message[1])
                             a_message_was_processed = True
                             # If handle message worked, then delete the message from SQS

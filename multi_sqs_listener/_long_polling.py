@@ -32,10 +32,7 @@ class _LongPollSQSListener(Thread):
         self._outbound_bus = outbound_bus
         self._queue_name = queue_name
         self._handler_available_event = handler_available_event
-        if self._endpoint_url is not None:
-            sqs = boto3.resource('sqs', region_name=self._region_name, endpoint_url=self._endpoint_url)
-        else:
-            sqs = boto3.resource('sqs', region_name=self._region_name)
+        sqs = boto3.resource('sqs', region_name=self._region_name, endpoint_url=self._endpoint_url)
         if self._queue_acct_id is not None:
             self._queue = sqs.get_queue_by_name(QueueName=self._queue_name, QueueOwnerAWSAccountId=self._queue_acct_id)
         else:
